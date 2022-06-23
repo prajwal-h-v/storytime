@@ -13,7 +13,7 @@ popular_df, pt, books, similarity_scores = loadBookData()
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index.html',title='StoryTime')
 
 @app.route('/movies')
 @app.route("/movies/home")
