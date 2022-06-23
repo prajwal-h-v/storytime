@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Recommender System</title>
+    <!-- Latest compiled and minified CSS -->
+<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+</head>
+<style>
+    .text-white{
+        color:white
+    }
+</style>
+<body style="background-color:#F0F1F4;">
+
+<!--    <nav class="navbar" style="background-color:#d39751">-->
+<!--        <a class="navbar-brand">My Book recommender</a>-->
+<!--        <ul class="nav navbar-nav">-->
+<!--            <li><a href="/">Home</a></li>-->
+<!--            <li><a href="/recommend">Recommend</a></li>-->
+<!--            <li><a>Contact</a></li>-->
+<!--        </ul>-->
+<!--    </nav>-->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"  style="text-align:left;">
+        <a class="navbar-brand" style="margin-left: 5%" href="{{url_for('home')}}">StoryTime</a>
+        <ul class="navbar-nav"  style="margin-left:55%";>
+            <li class="nav-item" >
+                <a class="nav-link" href="{{url_for('book_home')}}">RecoBook</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('book_recommend_ui')}}">Suggestions</a>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="/">StoryTime</a>
+            </li> -->
+        </ul>
+    </nav>
+
+    <div class="container">
+            <div class="col-md-12">
+                <h1 style="font-family:'Times New Roman';">Discover books you'll love!</h1>
+                    <p>Enter a book you like and the site will analyse our huge database of real readers' favorite books to provide book recommendations and suggestions for what to read next.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 style="font-family:'Times New Roman';"></h1>
+                <form action="/books/recommend_books" method="post">
+                    <input name="user_input" type="text" class="form-control"><br>
+                    <input type="submit" class="btn btn-lg btn-warning">
+                </form>
+            </div>
+
+            {% if data %}
+
+             {% for i in data %}
+                <div class="col-md-3" style="margin-top:50px">
+                    <div class="card">
+                        <div class="card-body">
+                            <img class="card-img-top" src="{{i[2]}}">
+                            <h3 style="text-decoration-color: red">{{i[0]}}</h3>
+                            <p style="text-decoration-color: red">Author - {{i[1]}}</p>
+                        </div>
+                    </div>
+                </div>
+             {% endfor %}
+
+            {% endif %}
+
+
+
+
+        </div>
+    </div>
+
+</body>
+</html>
